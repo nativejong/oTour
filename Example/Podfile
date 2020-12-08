@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+
+target 'Example' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  platform :ios, '13.0'
+  use_frameworks!
+  
+    pod 'oTour', :git => 'https://github.com/nativejong/oTour.git'
+#    pod 'oTour', :path => '/Users/jblaine/Native-Jong/oTour/oTour.podspec'
+    
+    post_install do |installer|
+        installer.pods_project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['ARCHS'] = '$ARCHS_STANDARD_64_BIT'
+            end
+        end
+    end
+
+end
